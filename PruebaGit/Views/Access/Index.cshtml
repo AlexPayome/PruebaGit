@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="with-device-width,initial-scale>1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>CUNDECINOS</title>
+    <link rel="stylesheet" href="/Content/bootstrap.css" />
+    <link href="~/Views/Home/Registrar.vbhtml" />
+
+
+</head>
+
+<div class="container">
+
+    <div class="row justify-content-left pt-5 mt-5 mr-1">
+
+        <div class="col-md-4 formulario">
+            <form id="frm">
+                <div class="form-group mx-sm-4 ">
+                    <input type="submit" class="btn boxLogReg" value="LOG IN">
+
+                    <input type="submit" class="btn boxLogReg " value="REGISTER" onclick="location.href=''">
+
+                </div>
+                <div class="form-group mx-sm-4">
+                    Usuario
+                    <input type="text" class="form-control" name="usuario" />
+                </div>
+                <div class="form-group mx-sm-4">
+                    Password
+                    <input type="password" class="form-control" name="password" />
+                </div>
+                <!--<div class="form-group mx-sm-4">
+                    <input type="text" class="form-control" placeholder="¿Olvidaste tu contraseña?">
+                </div> -->
+                <div class="form-group mx-sm-4 text-center">
+                    <input type="submit" class="btn btn-success" value="INGRESAR" />
+
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+@section scripts{
+
+    <script>
+    $(document).ready(function () {
+        $("#frm").submit(function (e) {
+            e.preventDefault();
+            URL = "@Url.Content("~/Access/Ingresar")"
+            parametros = $(this).serialize();
+            $.post(URL, parametros, function (data) {
+                if (data == "1") {
+                    document.location.href = "@Url.Content("~/")"
+                } else {
+                    alert(data)
+                }
+            })
+        })
+    })
+    </script>
+
+}
